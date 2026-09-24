@@ -238,9 +238,7 @@ def tds_dpcca_worker(
     arr = xp.asarray(arr)
 
     if max_time_delay is None:
-        return dpcca_worker(
-            s, arr, step, pd, gc_params, n_integral=n_integral, xp=xp
-        )
+        return dpcca_worker(s, arr, step, pd, gc_params, n_integral=n_integral, xp=xp)
 
     s_list = [s] if isinstance(s, int) else list(s)
 

@@ -6,7 +6,6 @@ from StatTools.analysis.dpcca import dpcca, tds_dpcca_worker
 from StatTools.generators import generate_fbn
 from StatTools.generators.multi_scale_fractional_generator import chol2d_mult
 
-
 try:
     import cupy as cp
 except ImportError:
