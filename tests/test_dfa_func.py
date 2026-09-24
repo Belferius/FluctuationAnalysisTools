@@ -158,6 +158,38 @@ def test_dfa_worker_invalid_dimension(xp):
 # ====================== Tests for dfa function ======================
 
 
+def test_dfa_backward_compatibility_1d(backend):
+    """Old DFA call without backend must return NumPy arrays."""
+    data = np.random.default_rng(42).normal(size=1024)
+
+    s_vals, f2_vals = dfa(
+        data,
+        degree=2,
+        processes=1,
+        s_values=[16, 32, 64],
+    )
+
+    assert isinstance(s_vals, np.ndarray)
+    assert isinstance(f2_vals, np.ndarray)
+
+
+def test_dfa_backward_compatibility_2d(backend):
+    """Old 2D DFA call without backend must return NumPy arrays."""
+    data = np.random.default_rng(42).normal(size=(3, 1024))
+
+    s_vals, f2_vals = dfa(
+        data,
+        degree=2,
+        processes=1,
+        s_values=[16, 32, 64],
+    )
+
+    assert isinstance(s_vals, np.ndarray)
+    assert isinstance(f2_vals, np.ndarray)
+    assert f2_vals.shape[0] == 3
+
+
+
 @pytest.mark.parametrize("h", TEST_H_VALUES)
 def test_dfa_1d_with_known_h(sample_signals, h, backend):
     """Test dfa function with 1D input and known Hurst exponent"""
