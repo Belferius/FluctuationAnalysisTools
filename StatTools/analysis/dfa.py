@@ -153,6 +153,7 @@ def dfa(
         s_values (Union[int, Sequence, None]): points where  fluctuation function F^2(s) is calculated (default: None).
         s_min (int): Minimal scale in s_values (default: 5).
         backend (str): "cpu" uses NumPy; "cuda" uses CuPy.
+            Due to CUDA overhead, CUDA is recommended for signal lengths starting from about 1 000 000 samples.
             Falls back to CPU with a warning if CuPy cannot be imported.
 
     Returns:
